@@ -1,10 +1,10 @@
 {
-    "name": "topthink/think-queue",
-    "description": "The ThinkPHP6 Queue Package",
+    "name": "sonhineboy/tp-queue",
+    "description": "The ThinkPHP6 Queue Package+rabbitmq",
     "authors": [
         {
-            "name": "yunwuxin",
-            "email": "448901948@qq.com"
+            "name": "kevin",
+            "email": "172205267@qq.com"
         }
     ],
     "license": "Apache-2.0",
@@ -21,12 +21,12 @@
             "think\\test\\queue\\": "tests"
         }
     },
-    "minimum-stability": "dev",
     "require": {
         "ext-json": "*",
         "topthink/framework": "^6.0",
         "symfony/process": "^4.2",
-        "nesbot/carbon": "^2.16"
+        "nesbot/carbon": "^2.16",
+        "enqueue/amqp-lib": "^0.9.8"
     },
     "extra": {
         "think": {
