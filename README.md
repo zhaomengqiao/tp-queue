@@ -1,6 +1,8 @@
 
 ## 说明
-本扩展是基于官方的扩展修复了部分bug ,新增了rabbitmq 的支持；如果喜欢请点 start ;必须是tp6版本
+本扩展是基于官方的扩展修复了部分bug , 的支持；如果喜欢请点 start ;必须是tp6版本
+- 新增了rabbitmq
+- 支持发送不同的队列；默认选择配置文件里的
 
 ## 安装
 
@@ -141,7 +143,17 @@ class Job2{
 
 
 ## 发布任务
-> `think\facade\Queue::push($job, $data = '', $queue = null)` 和 `think\facade\Queue::later($delay, $job, $data = '', $queue = null)` 两个方法，前者是立即执行，后者是在`$delay`秒后执行
+```injectablephp
+#直接发布
+think\facade\Queue::push($job, $data, $queue) //无延时
+think\facade\Queue::later($delay, $job, $data, $queue)  //支持延时
+#全局函数发布，支持不同的队列类型
+queue($job, $data = '', $delay = 0, $queue,$connection) //$connection 要发送的队列服务； database/redis/rabbimq
+
+```
+> `think\facade\Queue::push($job, $data = '', $queue = null)` 无延时
+> `think\facade\Queue::later($delay, $job, $data = '', $queue = null)`  支持延时
+> 
 
 `$job` 是任务名  
 单模块的，且命名空间是`app\job`的，比如上面的例子一,写`Job1`类名即可  

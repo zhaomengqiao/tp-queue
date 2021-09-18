@@ -45,7 +45,7 @@ class RabbitMq extends Job
         }
     }
 
-    public function attempts()
+    public function attempts(): int
     {
         // set default job attempts to 1 so that jobs can run without retry
         $defaultAttempts = 1;
@@ -53,7 +53,7 @@ class RabbitMq extends Job
         return $this->message->getProperty(self::ATTEMPT_COUNT_HEADERS_KEY, $defaultAttempts);
     }
 
-    public function getRawBody()
+    public function getRawBody(): string
     {
         return $this->message->getBody();
     }
@@ -92,7 +92,7 @@ class RabbitMq extends Job
      *
      * @return array
      */
-    public function payload()
+    public function payload(): array
     {
         return json_decode($this->getRawBody(), true);
     }

@@ -11,6 +11,7 @@
 
 namespace think;
 
+use think\helper\Arr;
 use think\queue\Connector;
 use think\queue\connector\Database;
 use think\queue\connector\Redis;
@@ -21,10 +22,12 @@ use think\queue\connector\Redis;
  *
  * @mixin Database
  * @mixin Redis
+ * @method driver($getConnection)
  */
 class Queue extends Manager
 {
     protected $namespace = '\\think\\queue\\connector\\';
+    protected $connection = null;
 
     protected function resolveType(string $name)
     {
@@ -36,7 +39,7 @@ class Queue extends Manager
         return $this->app->config->get("queue.connections.{$name}");
     }
 
-    protected function createDriver(string $name)
+    protected function createDriver(string $name): Connector
     {
         /** @var Connector $driver */
         $driver = parent::createDriver($name);
@@ -62,4 +65,25 @@ class Queue extends Manager
     {
         return $this->app->config->get('queue.default');
     }
+
+    /**
+     * 动态调用
+     * @param string $method
+     * @param array  $parameters
+     * @return mixed
+     */
+    public function __call($method, $parameters)
+    {
+        return $this->driver($this->getConnection())->$method(...$parameters);
+    }
+
+
+    public function setConnection($connection){
+        $this->connection = $connection;
+    }
+
+    public function getConnection(){
+        return $this->connection;
+    }
+
 }

@@ -20,8 +20,9 @@ if (!function_exists('queue')) {
      * @param int    $delay
      * @param null   $queue
      */
-    function queue($job, $data = '', $delay = 0, $queue = null)
+    function queue($job, $data = '', $delay = 0, $queue = null,$connection=null)
     {
+        Queue::setConnection($connection);
         if ($delay > 0) {
             Queue::later($delay, $job, $data, $queue);
         } else {
