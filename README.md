@@ -1,8 +1,10 @@
-# think-queue for ThinkPHP6
+
+## 说明
+本扩展是基于官方的扩展修复了部分bug ,新增了rabbitmq 的支持；如果喜欢请点 start ;必须是tp6版本
 
 ## 安装
 
-> composer require topthink/think-queue
+> composer require sonhineboy/tp-queue
 
 ## 配置
 
@@ -12,7 +14,7 @@
 
 ```bash
 [
-    'default'=>'sync' //驱动类型，可选择 sync(默认):同步执行，database:数据库驱动,redis:Redis驱动//或其他自定义的完整的类名
+    'default'=>'sync' //驱动类型，可选择 sync(默认):同步执行，database:数据库驱动,redis:Redis驱动 rabbitmq
 ]
 ```
 
