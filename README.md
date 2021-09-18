@@ -18,7 +18,55 @@
 ]
 ```
 
+### rabbitmq配置
+```php
+ 'rabbiMQ' => [
+            'type' => 'rabbitMq',
+            'dsn' => env('RABBITMQ_DSN', null),
+            'host' => env('RABBITMQ_HOST', '127.0.0.1'),
+            'port' => env('RABBITMQ_PORT', 5672),
+            'vhost' => env('RABBITMQ_VHOST', '/'),
+            'login' => env('RABBITMQ_LOGIN', 'admin'),
+            'password' => env('RABBITMQ_PASSWORD', 'admin'),
+            'queue' => env('RABBITMQ_QUEUE', 'default'),
+            'options' => [
+                'exchange' => [
+                    'name' => env('RABBITMQ_EXCHANGE_NAME',"default_exchange"),
+                    /*
+                    * Determine if exchange should be created if it does not exist.
+                    */
+                    'declare' => env('RABBITMQ_EXCHANGE_DECLARE', true),
+                    /*
+                    * Read more about possible values at https://www.rabbitmq.com/tutorials/amqp-concepts.html
+                    */
+                    'type' => env('RABBITMQ_EXCHANGE_TYPE', \Interop\Amqp\AmqpTopic::TYPE_DIRECT),
+                    'passive' => env('RABBITMQ_EXCHANGE_PASSIVE', false),
+                    'durable' => env('RABBITMQ_EXCHANGE_DURABLE', true),
+                    'auto_delete' => env('RABBITMQ_EXCHANGE_AUTODELETE', false),
+                    'arguments' => env('RABBITMQ_EXCHANGE_ARGUMENTS'),
+                ],
 
+                'queue' => [
+                    /*
+                    * Determine if queue should be created if it does not exist.
+                    */
+                    'declare' => env('RABBITMQ_QUEUE_DECLARE', true),
+                    /*
+                    * Determine if queue should be binded to the exchange created.
+                    */
+                    'bind' => env('RABBITMQ_QUEUE_DECLARE_BIND', true),
+                    /*
+                    * Read more about possible values at https://www.rabbitmq.com/tutorials/amqp-concepts.html
+                    */
+                    'passive' => env('RABBITMQ_QUEUE_PASSIVE', false),
+                    'durable' => env('RABBITMQ_QUEUE_DURABLE', true),
+                    'exclusive' => env('RABBITMQ_QUEUE_EXCLUSIVE', false),
+                    'auto_delete' => env('RABBITMQ_QUEUE_AUTODELETE', false),
+                    'arguments' => env('RABBITMQ_QUEUE_ARGUMENTS'),
+                ],
+            ],
+
+```
 ## 创建任务类
 > 单模块项目推荐使用 `app\job` 作为任务类的命名空间
 > 多模块项目可用使用 `app\module\job` 作为任务类的命名空间
