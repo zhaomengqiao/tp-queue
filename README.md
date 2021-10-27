@@ -5,7 +5,7 @@
 - 支持发送不同的队列；默认选择配置文件里的
 
 #支持点右上角start
-[我的blog](https://blog.suiyidian.cn)
+[我的blog](http://blog.suiyidian.cn)
 ## 安装
 
 > composer require sonhineboy/tp-queue
