@@ -98,6 +98,7 @@ class  RabbitMq extends Connector
     public function pushRaw($payload, $queueName = null, array $options = [])
     {
         try {
+            $this->options = array_merge($this->options,$options);
             /**
              * @var AmqpTopic
              * @var AmqpQueue $queue
