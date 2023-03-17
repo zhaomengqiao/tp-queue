@@ -8,7 +8,7 @@
 [我的blog](http://blog.suiyidian.cn)
 ## 安装
 
-> composer require sonhineboy/tp-queue
+> composer require zhaomengqiao/tp-queue
 
 ## 配置
 
