@@ -8,7 +8,7 @@
 [我的blog](http://blog.suiyidian.cn)
 ## 安装
 
-> composer require zhaomengqiao/tp6-queue
+> composer require zhaomengqiao/tp6-queue:3.0.x-dev
 
 ## 配置
 
